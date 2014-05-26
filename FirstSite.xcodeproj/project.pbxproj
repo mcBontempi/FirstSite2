@@ -93,6 +93,7 @@
 		D6EECBD01923ED07007C8839 /* Recorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recorder.m; sourceTree = "<group>"; };
 		D6EECBD31923ED3F007C8839 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D6EECBD51923ED86007C8839 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FD0D4A9A19337068002A3D24 /* MusicDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +126,7 @@
 		D6C39E911928038A0005DC51 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FD0D4A9A19337068002A3D24 /* MusicDefines.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";

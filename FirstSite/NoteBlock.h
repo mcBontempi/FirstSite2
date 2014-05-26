@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MusicDefines.h"
+
 @class Note;
 
 @interface NoteBlock : UIView
 
 @property (nonatomic, strong) Note *note;
+@property (nonatomic, assign) enum Clef clef;
 
 @end

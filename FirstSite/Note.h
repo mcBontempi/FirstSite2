@@ -7,12 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-NS_ENUM(NSUInteger, Accidental) {
-    AccedentalNone,
-    AccidentalFlat,
-    AccidentalSharp,
-};
+#import "MusicDefines.h"
 
 @interface Note : NSObject
 
@@ -21,5 +16,6 @@ NS_ENUM(NSUInteger, Accidental) {
 @property (nonatomic, assign) NSUInteger octave;
 
 - (NSUInteger)index;
+- (NSUInteger)clefOffset:(enum Clef)clef;
 
 @end

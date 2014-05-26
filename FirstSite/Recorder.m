@@ -140,8 +140,6 @@ static void recordCallback(
 	{
 		float freq = find_pitch(buffer, MIN_FREQ, MAX_FREQ);
         
-        NSLog(@"%f", freq);
-        
 		[delegate recordedFreq:freq];
 	}
 }

@@ -10,11 +10,16 @@
 
 @implementation Note
 
--(NSUInteger)index
+- (NSUInteger)index
 {
-    NSUInteger noteIndex = [@{@"C":@0, @"D":@1, @"E":@2, @"F":@3, @"G":@4, @"A":@5, @"B":@6}[self.note] integerValue];
-    
-    return (self.octave * 7) + noteIndex;
+  NSUInteger noteIndex = [@{@"C":@0, @"D":@1, @"E":@2, @"F":@3, @"G":@4, @"A":@5, @"B":@6}[self.note] integerValue];
+  
+  return (self.octave * 7) + noteIndex;
+}
+
+- (NSUInteger)clefOffset:(enum Clef)clef;
+{
+  return clef == ClefBass ? 12 : 0;
 }
 
 @end
