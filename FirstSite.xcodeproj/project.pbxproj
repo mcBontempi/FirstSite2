@@ -33,7 +33,7 @@
 		D6EECBC91923CD78007C8839 /* Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EECBC81923CD78007C8839 /* Paths.m */; };
 		D6EECBCC1923CEF3007C8839 /* Excercise.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EECBCB1923CEF3007C8839 /* Excercise.m */; };
 		D6EECBD11923ED07007C8839 /* fft.c in Sources */ = {isa = PBXBuildFile; fileRef = D6EECBCD1923ED07007C8839 /* fft.c */; };
-		D6EECBD21923ED07007C8839 /* Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EECBD01923ED07007C8839 /* Recorder.m */; };
+		D6EECBD21923ED07007C8839 /* Recorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6EECBD01923ED07007C8839 /* Recorder.mm */; };
 		D6EECBD41923ED3F007C8839 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EECBD31923ED3F007C8839 /* CoreAudio.framework */; };
 		D6EECBD61923ED86007C8839 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EECBD51923ED86007C8839 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
@@ -90,7 +90,7 @@
 		D6EECBCD1923ED07007C8839 /* fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fft.c; sourceTree = "<group>"; };
 		D6EECBCE1923ED07007C8839 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
 		D6EECBCF1923ED07007C8839 /* Recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recorder.h; sourceTree = "<group>"; };
-		D6EECBD01923ED07007C8839 /* Recorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recorder.m; sourceTree = "<group>"; };
+		D6EECBD01923ED07007C8839 /* Recorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Recorder.mm; sourceTree = "<group>"; };
 		D6EECBD31923ED3F007C8839 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D6EECBD51923ED86007C8839 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FD0D4A9A19337068002A3D24 /* MusicDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicDefines.h; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 				D6EECBCD1923ED07007C8839 /* fft.c */,
 				D6EECBCE1923ED07007C8839 /* fft.h */,
 				D6EECBCF1923ED07007C8839 /* Recorder.h */,
-				D6EECBD01923ED07007C8839 /* Recorder.m */,
+				D6EECBD01923ED07007C8839 /* Recorder.mm */,
 				D6EECBCA1923CEF3007C8839 /* Excercise.h */,
 				D6EECBCB1923CEF3007C8839 /* Excercise.m */,
 				D6EECBC71923CD78007C8839 /* Paths.h */,
@@ -380,7 +380,7 @@
 				D6EECBCC1923CEF3007C8839 /* Excercise.m in Sources */,
 				D6C39E95192804460005DC51 /* ClefBlock.m in Sources */,
 				D6EECB9D1923BFD4007C8839 /* AppDelegate.m in Sources */,
-				D6EECBD21923ED07007C8839 /* Recorder.m in Sources */,
+				D6EECBD21923ED07007C8839 /* Recorder.mm in Sources */,
 				D6EECBC91923CD78007C8839 /* Paths.m in Sources */,
 				D6EECBD11923ED07007C8839 /* fft.c in Sources */,
 				D6EECB991923BFD4007C8839 /* main.m in Sources */,
