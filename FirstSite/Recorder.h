@@ -49,6 +49,7 @@
 
 - (void)startRecording;
 - (void)stopRecording;
-- (void)recordedBuffer:(UInt8*)buffer byteSize:(UInt32)byteSize;
+
+- (void)recordedBuffer:(void * const)buffer byteSize:(UInt32)byteSize;
 
 @end

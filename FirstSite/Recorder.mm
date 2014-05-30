@@ -56,8 +56,8 @@ double EstimatePeriod(
     //  Get the highest value
     int bestP = minP;
     for ( int p = minP; p <= maxP; p++ )
-        if ( nac[p] > nac[bestP] )
-            bestP = p;
+    if ( nac[p] > nac[bestP] )
+    bestP = p;
     
     //  Give up if it's highest value, but not actually a peak.
     //  This can happen if the period is outside the range [minP, maxP]
@@ -85,7 +85,7 @@ double EstimatePeriod(
     double left  = nac[bestP-1];
     double right = nac[bestP+1];
     
-    assert( 2*mid - left - right > 0.0 );
+    //   assert( 2*mid - left - right > 0.0 );
     
     double shift = 0.5*(right-left) / ( 2*mid - left - right );
     
@@ -127,7 +127,7 @@ double EstimatePeriod(
             //  not all submultiples are strong, so we haven't found
             //  the correct submultiple.
             if ( nac[subMulP] < k_subMulThreshold * nac[bestP] )
-                subsAllStrong = false;
+            subsAllStrong = false;
             
             //  TODO: Use spline interpolation to get better estimates of nac
             //  magnitudes for non-integer periods in the above comparison
@@ -146,14 +146,6 @@ double EstimatePeriod(
 }
 
 
-
-
-
-
-// Wikipedia: In terms of frequency, human voices are roughly in the range of 
-// 80 Hz to 1100 Hz (that is, E2 to C6).
-const float MIN_FREQ = 50.0f;
-const float MAX_FREQ = 1500.0f;
 
 @interface Recorder (Private)
 - (void)setUpAudioFormat;
@@ -174,20 +166,20 @@ const float MAX_FREQ = 1500.0f;
 @synthesize bufferNumPackets;
 
 static void recordCallback(
-	void* inUserData,
-	AudioQueueRef inAudioQueue,
-	AudioQueueBufferRef inBuffer,
-	const AudioTimeStamp* inStartTime,
-	UInt32 inNumPackets,
-	const AudioStreamPacketDescription* inPacketDesc)
+                           void* inUserData,
+                           AudioQueueRef inAudioQueue,
+                           AudioQueueBufferRef inBuffer,
+                           const AudioTimeStamp* inStartTime,
+                           UInt32 inNumPackets,
+                           const AudioStreamPacketDescription* inPacketDesc)
 {
 	Recorder* recorder = (__bridge Recorder*) inUserData;
 	if (!recorder.recording)
-		return;
-
+    return;
+    
 	if (inNumPackets > 0)  // we have data
-		[recorder recordedBuffer:(UInt8*)inBuffer->mAudioData byteSize:inBuffer->mAudioDataByteSize];
-
+    [recorder recordedBuffer:inBuffer->mAudioData byteSize:inBuffer->mAudioDataByteSize];
+    
 	AudioQueueEnqueueBuffer(inAudioQueue, inBuffer, 0, NULL);
 }
 
@@ -206,22 +198,14 @@ static void recordCallback(
 - (void)setUpAudioFormat
 {
 	audioFormat.mFormatID         = kAudioFormatLinearPCM;
-	audioFormat.mSampleRate       = 44100;
-	audioFormat.mChannelsPerFrame = 1;
-	audioFormat.mBitsPerChannel   = 16;
-	audioFormat.mFramesPerPacket  = 1;
-	audioFormat.mBytesPerFrame    = audioFormat.mChannelsPerFrame * sizeof(SInt16); 
-	audioFormat.mBytesPerPacket   = audioFormat.mBytesPerFrame * audioFormat.mFramesPerPacket;
-	audioFormat.mFormatFlags      = kLinearPCMFormatFlagIsSignedInteger 
-	                              | kLinearPCMFormatFlagIsPacked;
-
-	bufferNumPackets = 2048*4;  // must be power of 2 for FFT!
-	bufferByteSize = [self byteSizeForNumPackets:bufferNumPackets];
-
-	//NSLog(@"Recorder bufferNumPackets %u", bufferNumPackets);
-	//NSLog(@"Recorder bufferByteSize %u", bufferByteSize);
-	
-	//init_fft(bufferNumPackets, audioFormat.mSampleRate);
+	audioFormat.mSampleRate       = 88200;
+    audioFormat.mBytesPerFrame = sizeof(float);
+    audioFormat.mFramesPerPacket = 1;
+    audioFormat.mBytesPerPacket = sizeof(float);
+    audioFormat.mChannelsPerFrame = 1;
+    audioFormat.mBitsPerChannel = sizeof(float)*8;
+	audioFormat.mFormatFlags      =  kAudioFormatFlagIsFloat;
+	bufferByteSize = [self byteSizeForNumPackets:10000];
 }
 
 - (UInt32)numPacketsForTime:(Float64)seconds
@@ -237,13 +221,13 @@ static void recordCallback(
 - (void)setUpRecordQueue
 {
 	AudioQueueNewInput(
-		&audioFormat,
-		recordCallback,
-		(__bridge void *)(self),                // userData
-		CFRunLoopGetMain(),  // run loop
-		NULL,                // run loop mode
-		0,                   // flags
-		&recordQueue);
+                       &audioFormat,
+                       recordCallback,
+                       (__bridge void *)(self),                // userData
+                       CFRunLoopGetMain(),  // run loop
+                       NULL,                // run loop mode
+                       0,                   // flags
+                       &recordQueue);
 }
 
 - (void)setUpRecordQueueBuffers
@@ -251,9 +235,9 @@ static void recordCallback(
 	for (int t = 0; t < NUMBER_AUDIO_DATA_BUFFERS; ++t)
 	{
 		AudioQueueAllocateBuffer(
-			recordQueue,
-			bufferByteSize,
-			&recordQueueBuffers[t]);
+                                 recordQueue,
+                                 bufferByteSize,
+                                 &recordQueueBuffers[t]);
 	}
 }
 
@@ -262,10 +246,10 @@ static void recordCallback(
 	for (int t = 0; t < NUMBER_AUDIO_DATA_BUFFERS; ++t)
 	{
 		AudioQueueEnqueueBuffer(
-			recordQueue,
-			recordQueueBuffers[t],
-			0,
-			NULL);
+                                recordQueue,
+                                recordQueueBuffers[t],
+                                0,
+                                NULL);
 	}
 }
 
@@ -282,16 +266,11 @@ static void recordCallback(
 	recording = NO;
 }
 
-- (void)recordedBuffer:(UInt8*)buffer byteSize:(UInt32)byteSize
+- (void)recordedBuffer:(void * const)buffer byteSize:(UInt32)byteSize
 {
 	if (trackingPitch)
 	{
-        
-        
-        /*
-	//	float freq = find_pitch(buffer, MIN_FREQ, MAX_FREQ);
-        
-        
+        double q;
         
         const double pi = 4*atan(1);
         
@@ -301,119 +280,31 @@ static void recordCallback(
         
         const int minP = int(sr/maxF-1);    //  Minimum period
         const int maxP = int(sr/minF+1);    //  Maximum period
-        
-        //  Generate a test signal
-        
-        const double A440 = 440.0;              //  A440
-        double f = A440 * pow(2.0,-9.0/12.0);   //  Middle C (9 semitones below A440)
-        
-        double p  = sr/f;
-        double q;
-        const int n = 2*maxP;
-        double x[100000];
-        
-        
-        
-        
-        for ( int k = 0; k < byteSize; k+=2 )
-        {
-            float f;
-            UInt8 i1 = buffer[k];
-            UInt8 i2 = buffer[k+1];
-            
-            short i = i1;
-            i = i<<8;
-            i = i | i2;
-            
-            f = ((float) i) / (float) 32768;
-            if( f > 1 ) f = 1;
-            if( f < -1 ) f = -1;
-            
-            
-            x[k/2] = f;
 
-        }
         
-        //  TODO: Add low-pass filter to remove very high frequency
-        //  energy. Harmonics above about 1/4 of Nyquist tend to mess
-        //  things up, as their periods are often nowhere close to
-        //  integer numbers of samples.
         
         //  Estimate the period
-        double pEst = EstimatePeriod( x, byteSize/2, minP, maxP, q );
+        double pEst = EstimatePeriod( (const double  *)buffer, 10000, minP, maxP, q );
         
         //  Compute the fundamental frequency (reciprocal of period)
         double fEst = 0;
         if ( pEst > 0 )
-            fEst = sr/pEst;
+        fEst = 44100/pEst;
         
-        printf( "Actual freq:         %8.3lf\n", f );
-        printf( "Estimated freq:      %8.3lf\n", sr/pEst );
-        printf( "Error (cents):       %8.3lf\n", 100*12*log(fEst/f)/log(2) );
+        //   printf( "Actual freq:         %8.3lf\n", f );
+        printf( "Estimated freq:      %8.3lf\n", 44100/pEst );
+        // printf( "Error (cents):       %8.3lf\n", 100*12*log(fEst/f)/log(2) );
         printf( "Periodicity quality: %8.3lf\n", q );
         
         
-        double fre = EstimatePeriod(
-                              buffer,
-                              byteSize,
-                              minP,
-                              maxP,       //  Maximum period
-                                  q );         //  Quality (1= perfectly periodic)
-        */
         
-        const double pi = 4*atan(1);
-        
-        const double sr = 44100;        //  Sample rate.
-        const double minF = 27.5;       //  Lowest pitch of interest (27.5 = A0, lowest note on piano.)
-        const double maxF = 4186.0;     //  Highest pitch of interest(4186 = C8, highest note on piano.)
-        
-        const int minP = int(sr/maxF-1);    //  Minimum period
-        const int maxP = int(sr/minF+1);    //  Maximum period
-        
-        //  Generate a test signal
-        
-        const double A440 = 440.0;              //  A440
-        double f = A440 * pow(2.0,-9.0/12.0);   //  Middle C (9 semitones below A440)
-        
-        double p  = sr/f;
-        double q;
-        const int n = 2*maxP;
-        double x[n];
-        
-        for ( int k = 0; k < n; k++ )
-        {
-            x[k] = 0;
-            x[k] += 1.0*sin(2*pi*1*k/p);    //  First harmonic
-            x[k] += 0.6*sin(2*pi*2*k/p);    //  Second harmonic
-            x[k] += 0.3*sin(2*pi*3*k/p);    //  Third harmonic
-        }
-        
-        //  TODO: Add low-pass filter to remove very high frequency
-        //  energy. Harmonics above about 1/4 of Nyquist tend to mess
-        //  things up, as their periods are often nowhere close to
-        //  integer numbers of samples.
-        
-        //  Estimate the period
-        double pEst = EstimatePeriod( x, n, minP, maxP, q );
-        
-        //  Compute the fundamental frequency (reciprocal of period)
-        double fEst = 0;
-        if ( pEst > 0 )
-            fEst = sr/pEst;
-        
-        printf( "Actual freq:         %8.3lf\n", f );
-        printf( "Estimated freq:      %8.3lf\n", sr/pEst );
-        printf( "Error (cents):       %8.3lf\n", 100*12*log(fEst/f)/log(2) );
-        printf( "Periodicity quality: %8.3lf\n", q );
-        
-        
-		[delegate recordedFreq:f];
+		[delegate recordedFreq:pEst];
 	}
 }
 
 - (void)dealloc
 {
-//	done_fft();
+    //	done_fft();
 	AudioQueueDispose(recordQueue, YES);
 }
 
