@@ -1,10 +1,13 @@
 PODS:
   - CHCSVParser (2.0.7)
+  - Novocaine (0.0.1)
 
 DEPENDENCIES:
   - CHCSVParser
+  - Novocaine
 
 SPEC CHECKSUMS:
-  CHCSVParser: 55dc941b33f48f153e727057260b442a12fca110
+  CHCSVParser: 0c75a766de2eabc4ff03639945a7ad4a724344d4
+  Novocaine: 4ee4149a8089165d09d274c3f5671ae4096285b5
 
 COCOAPODS: 0.32.1

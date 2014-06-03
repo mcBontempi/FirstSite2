@@ -26,6 +26,12 @@ const NSUInteger KSpacing = 25;
   return self;
 }
 
+ -(void)setNote:(Note *)note
+
+{
+    _note = note;
+}
+
 - (void)layoutSubviews
 {
   [super layoutSubviews];

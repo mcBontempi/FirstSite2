@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Novocaine.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1E19795B60AF4A9F97FFC321</key>
+		<key>0E0DA5D2B2484AB4A5F3A1E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC86FD2AB68D415C80297407</key>
+		<key>92D5B0D6053844AEA5F765F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C3180783DA9D4565A9D412CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

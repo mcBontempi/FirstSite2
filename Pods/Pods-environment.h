@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_CHCSVParser 0
 #define COCOAPODS_VERSION_PATCH_CHCSVParser 7
 
+// Novocaine
+#define COCOAPODS_POD_AVAILABLE_Novocaine
+#define COCOAPODS_VERSION_MAJOR_Novocaine 0
+#define COCOAPODS_VERSION_MINOR_Novocaine 0
+#define COCOAPODS_VERSION_PATCH_Novocaine 1
+

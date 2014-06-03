@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D6EECB881923BFD4007C8839"
-               BuildableName = "FirstSite.app"
-               BlueprintName = "FirstSite"
+               BuildableName = "FirstSite mvp2.app"
+               BlueprintName = "FirstSite mvp2"
                ReferencedContainer = "container:FirstSite.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6EECB881923BFD4007C8839"
-            BuildableName = "FirstSite.app"
-            BlueprintName = "FirstSite"
+            BuildableName = "FirstSite mvp2.app"
+            BlueprintName = "FirstSite mvp2"
             ReferencedContainer = "container:FirstSite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6EECB881923BFD4007C8839"
-            BuildableName = "FirstSite.app"
-            BlueprintName = "FirstSite"
+            BuildableName = "FirstSite mvp2.app"
+            BlueprintName = "FirstSite mvp2"
             ReferencedContainer = "container:FirstSite.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6EECB881923BFD4007C8839"
-            BuildableName = "FirstSite.app"
-            BlueprintName = "FirstSite"
+            BuildableName = "FirstSite mvp2.app"
+            BlueprintName = "FirstSite mvp2"
             ReferencedContainer = "container:FirstSite.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

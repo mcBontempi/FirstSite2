@@ -61,7 +61,7 @@
 		D6C39E94192804460005DC51 /* ClefBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefBlock.m; sourceTree = "<group>"; };
 		D6C39E96192805020005DC51 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		D6C39E97192805020005DC51 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
-		D6EECB891923BFD4007C8839 /* FirstSite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstSite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6EECB891923BFD4007C8839 /* FirstSite mvp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FirstSite mvp2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6EECB8C1923BFD4007C8839 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D6EECB8E1923BFD4007C8839 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D6EECB901923BFD4007C8839 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -162,7 +162,7 @@
 		D6EECB8A1923BFD4007C8839 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D6EECB891923BFD4007C8839 /* FirstSite.app */,
+				D6EECB891923BFD4007C8839 /* FirstSite mvp2.app */,
 				D6EECBAD1923BFD4007C8839 /* FirstSiteTests.xctest */,
 			);
 			name = Products;
@@ -241,9 +241,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D6EECB881923BFD4007C8839 /* FirstSite */ = {
+		D6EECB881923BFD4007C8839 /* FirstSite mvp2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6EECBBE1923BFD4007C8839 /* Build configuration list for PBXNativeTarget "FirstSite" */;
+			buildConfigurationList = D6EECBBE1923BFD4007C8839 /* Build configuration list for PBXNativeTarget "FirstSite mvp2" */;
 			buildPhases = (
 				14B3974EAC3A43E793F781B0 /* Check Pods Manifest.lock */,
 				D6EECB851923BFD4007C8839 /* Sources */,
@@ -255,9 +255,9 @@
 			);
 			dependencies = (
 			);
-			name = FirstSite;
+			name = "FirstSite mvp2";
 			productName = FirstSite;
-			productReference = D6EECB891923BFD4007C8839 /* FirstSite.app */;
+			productReference = D6EECB891923BFD4007C8839 /* FirstSite mvp2.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D6EECBAC1923BFD4007C8839 /* FirstSiteTests */ = {
@@ -305,7 +305,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D6EECB881923BFD4007C8839 /* FirstSite */,
+				D6EECB881923BFD4007C8839 /* FirstSite mvp2 */,
 				D6EECBAC1923BFD4007C8839 /* FirstSiteTests */,
 			);
 		};
@@ -373,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6EECBD11923ED07007C8839 /* fft.c in Sources */,
 				D6C39E98192805020005DC51 /* GameViewController.m in Sources */,
 				D64C1E7B19280B1000BCD7D5 /* NoteBlock.m in Sources */,
 				D6EECBA61923BFD4007C8839 /* ViewController.m in Sources */,
@@ -382,7 +383,6 @@
 				D6EECB9D1923BFD4007C8839 /* AppDelegate.m in Sources */,
 				D6EECBD21923ED07007C8839 /* Recorder.mm in Sources */,
 				D6EECBC91923CD78007C8839 /* Paths.m in Sources */,
-				D6EECBD11923ED07007C8839 /* fft.c in Sources */,
 				D6EECB991923BFD4007C8839 /* main.m in Sources */,
 				D6EECBC61923CCD0007C8839 /* Model.m in Sources */,
 			);
@@ -401,7 +401,7 @@
 /* Begin PBXTargetDependency section */
 		D6EECBB31923BFD4007C8839 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D6EECB881923BFD4007C8839 /* FirstSite */;
+			target = D6EECB881923BFD4007C8839 /* FirstSite mvp2 */;
 			targetProxy = D6EECBB21923BFD4007C8839 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -596,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6EECBBE1923BFD4007C8839 /* Build configuration list for PBXNativeTarget "FirstSite" */ = {
+		D6EECBBE1923BFD4007C8839 /* Build configuration list for PBXNativeTarget "FirstSite mvp2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6EECBBF1923BFD4007C8839 /* Debug */,

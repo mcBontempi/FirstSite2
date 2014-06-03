@@ -20,7 +20,7 @@
 }
 - (IBAction)stopButtonTapped:(id)sender
 {
-    [_recorder stopRecording];
+
 }
 
 - (void)viewDidLoad
@@ -29,8 +29,7 @@
 	
     _recorder = [[Recorder alloc] init];
     _recorder.delegate = self;
-    _recorder.trackingPitch = YES;
-    [_recorder startRecording];
+
 }
 
 - (void)didReceiveMemoryWarning
