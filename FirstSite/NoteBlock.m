@@ -15,6 +15,8 @@ const NSUInteger KSpacing = 25;
   
   __weak IBOutlet UIView *_noteView;
   __weak IBOutlet UIView *_accidentalView;
+    __weak IBOutlet UIImageView *_quarterUp;
+    __weak IBOutlet UIImageView *_quarterDown;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -36,13 +38,19 @@ const NSUInteger KSpacing = 25;
 {
   [super layoutSubviews];
   
-  NSUInteger offsetFromBottomOfScreen = 21;
+  NSUInteger offsetFromBottomOfScreen = 17;
   
   CGFloat noteBottom = self.frame.size.height - ((_note.index + [_note clefOffset:self.clef] - offsetFromBottomOfScreen) * KSpacing);
   
   CGRect noteFrame = _noteView.frame;
   noteFrame.origin.y =  noteBottom;
   _noteView.frame = noteFrame;
+    
+    BOOL down = _note.index < 37;
+    
+    _quarterUp.hidden = !down;
+    _quarterDown.hidden = down;
+    
   
   CGRect accidentalFrame = _accidentalView.frame;
   accidentalFrame.origin.y =  noteBottom;

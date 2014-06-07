@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Model.h"
+#import "GameViewController.h"
 
 @implementation AppDelegate {
     Model *_model;
@@ -17,7 +18,11 @@
 {
     
     _model = [[Model alloc] init];
-    [_model createExcercise];
+    [_model createDefaultExcercise];
+    
+    GameViewController *gameViewController = (GameViewController *)self.window.rootViewController;
+    
+    gameViewController.excercise = _model.excercise;
     
     return YES;
 }

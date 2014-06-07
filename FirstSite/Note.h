@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *note;
 @property (nonatomic, assign) NSUInteger octave;
 
+
 - (NSUInteger)index;
 - (NSUInteger)clefOffset:(enum Clef)clef;
 

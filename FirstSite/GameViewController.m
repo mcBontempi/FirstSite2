@@ -12,98 +12,103 @@
 #import "Note.h"
 #import "Excercise.h"
 #import "Recorder.h"
+#import "MarkerBlock.h"
 
 @interface GameViewController () <RecorderDelegate>
+
+@property (nonatomic, assign) NSUInteger currentNoteIndex;
+
 @end
 
 @implementation GameViewController {
     NSUInteger _runningX;
     
-    Excercise *_excercise;
+
     
     Recorder *_recorder;
     
-    // Game State
-    NSUInteger _currentNoteIndex;
-    Note *_currentNote;
+    MarkerBlock *_markerBlock;
     
+    
+    CGFloat _clefWidth;
+    CGFloat _noteWidth;
+    
+}
+
+- (void)setCurrentNoteIndex:(NSUInteger)currentNoteIndex
+{
+    _currentNoteIndex = currentNoteIndex;
+    
+    CGFloat x = _clefWidth;
+    
+    x+=(_currentNoteIndex*_noteWidth);
+    
+    
+    CGRect rect = _markerBlock.frame;
+    rect.origin.x = x;
+    _markerBlock.frame = rect;
+}
+
+- (IBAction)moveMarkerBlock:(id)sender
+{
+    self.currentNoteIndex++;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    _markerBlock = [[[NSBundle mainBundle] loadNibNamed:@"MarkerBlock" owner:self options:nil] lastObject];
+    
+    [self.view addSubview:_markerBlock];
+    
     _runningX = 0;
     
-    _excercise = [[Excercise alloc] init];
-    _excercise.clef = ClefBass;
+    _clefWidth = [self addClefBlock];
     
-    [self addClefBlock];
-    
-    enum Accidental accidental = AccidentalNone;
-    
-    for (NSUInteger i = 4; i<5; i++){
-        
-        for (NSUInteger n = 0 ; n < 2 ; n++) {
-            
-            Note *note = [[Note alloc] init];
-            
-            note.octave = i;
-            note.note = @[@"C", @"D", @"E", @"F", @"G", @"A", @"B"][n];
-            note.accidental = accidental++;
-            
-            if(accidental == AccidentalSharp) {
-                
-                accidental = AccidentalNone;
-            }
-            
-            [self addNoteBlock:note];
-        }
-    }
+    [self.excercise.noteSequence enumerateObjectsUsingBlock:^(Note *note, NSUInteger idx, BOOL *stop) {
+        _noteWidth = [self addNoteBlock:note];
+    }];
     
     _recorder = [[Recorder alloc] init];
     _recorder.delegate = self;
     
+    [self.view bringSubviewToFront:_markerBlock];
+    
+    self.currentNoteIndex = 0;
 }
 
-- (void)addBlock:(UIView *)view
+- (CGFloat)addBlock:(UIView *)view
 {
-    if (_runningX > 1000) {
-        _runningX = 0;
-    }
-    
     CGRect rect = view.frame;
     rect.origin.x = _runningX;
     view.frame = rect;
     
     _runningX += rect.size.width;
     
-    [self.view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        //     [obj removeFromSuperview];
-        
-    }];
-    
-    self.view.backgroundColor = [UIColor greenColor];
-    
     [self.view addSubview:view];
+    
+    return rect.size.width;
 }
 
-- (void)addClefBlock
+- (CGFloat)addClefBlock
 {
     ClefBlock *clefBlock = [[[NSBundle mainBundle] loadNibNamed:@"ClefBlock" owner:self options:nil] lastObject];
     
-    [self addBlock:clefBlock];
+    return [self addBlock:clefBlock];
 }
 
-- (void)addNoteBlock:(Note *)note
+- (CGFloat)addNoteBlock:(Note *)note
 {
     NoteBlock *noteBlock = [[[NSBundle mainBundle] loadNibNamed:@"NoteBlock" owner:self options:nil] lastObject];
     
     noteBlock.clef = _excercise.clef;
     
-    [self addBlock:noteBlock];
+    CGFloat width = [self addBlock:noteBlock];
     
     noteBlock.note = note;
+    
+    return width;
 }
 
 - (void)recordedFreq:(float)freq;
@@ -128,7 +133,7 @@
         note.octave = detectedOctave;
         note.note = @[@"C", @"C", @"D", @"D", @"E", @"F",@"F", @"G",@"G", @"A",@"A", @"B"][detectedNote];
         
-        switch (noteIndex)
+        switch (detectedNote)
         
         {
             case 1:
@@ -140,16 +145,12 @@
                 break;
         }
         
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self addNoteBlock:note];
-        });
-        
-        
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
-        
-        
+        if ([note isEqual:_excercise.noteSequence[_currentNoteIndex]]) {
+            
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 self.currentNoteIndex++;
+             });
+        }
     }
 }
 

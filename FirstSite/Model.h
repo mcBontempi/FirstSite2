@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class Excercise;
+
 @interface Model : NSObject
 
-- (void)createExcercise;
+@property (nonatomic, strong) Excercise *excercise;
+
+- (void)createDefaultExcercise;
 
 @end

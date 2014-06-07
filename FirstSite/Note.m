@@ -12,7 +12,7 @@
 
 - (NSUInteger)index
 {
-  NSUInteger noteIndex = [@{@"C":@0, @"D":@1, @"E":@2, @"F":@3, @"G":@4, @"A":@5, @"B":@6}[self.note] integerValue];
+    NSUInteger noteIndex = [@{@"A":@0, @"B":@1, @"C":@2, @"D":@3, @"E":@4, @"F":@5, @"G":@6}[self.note] integerValue];
   
   return (self.octave * 7) + noteIndex;
 }
@@ -20,6 +20,26 @@
 - (NSUInteger)clefOffset:(enum Clef)clef;
 {
   return clef == ClefBass ? 12 : 0;
+}
+
+
+- (BOOL)isEqual:(Note *)testNote
+{
+    if(self.index == testNote.index && self.accidental == testNote.accidental) {
+        return YES;
+    }
+ 
+    return NO;
+}
+
+- (NSString *)description
+{
+    NSString *accidentalString = @"";
+    
+    if (self.accidental == AccidentalFlat) accidentalString = @"Flat";
+    if (self.accidental == AccidentalSharp) accidentalString = @"Sharp";
+    
+    return [NSString stringWithFormat:@"%@%lu%@", self.note, (unsigned long)self.octave, accidentalString];
 }
 
 @end

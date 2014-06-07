@@ -84,9 +84,9 @@ using namespace std;
             
            _xoffset = 0;
             
-            if(error < 3000) {
+          //  if(error < 3000) {
                 [weakSelf.delegate recordedFreq:ef];
-            }
+           // }
             
         }
     }];
