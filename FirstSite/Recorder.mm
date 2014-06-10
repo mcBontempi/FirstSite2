@@ -77,10 +77,10 @@ using namespace std;
             
             double error = 100*12*log(fEst/f)/log(2);
             
-            printf( "Actual freq:         %8.3lf\n", f );
-            printf( "Estimated freq:      %8.3lf\n", sr/pEst );
-            printf( "Error (cents):       %8.3lf\n", error);
-            printf( "Periodicity quality: %8.3lf\n", q );
+        //    printf( "Actual freq:         %8.3lf\n", f );
+        //    printf( "Estimated freq:      %8.3lf\n", sr/pEst );
+        //    printf( "Error (cents):       %8.3lf\n", error);
+        //    printf( "Periodicity quality: %8.3lf\n", q );
             
            _xoffset = 0;
             

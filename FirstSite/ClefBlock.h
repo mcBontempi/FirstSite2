@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicDefines.h"
 
 @interface ClefBlock : UIView
+
+@property (nonatomic, assign) enum Clef clef;
 
 @end

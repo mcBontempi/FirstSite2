@@ -38,7 +38,7 @@ const NSUInteger KSpacing = 25;
 {
   [super layoutSubviews];
   
-  NSUInteger offsetFromBottomOfScreen = 17;
+  NSUInteger offsetFromBottomOfScreen = 15;
   
   CGFloat noteBottom = self.frame.size.height - ((_note.index + [_note clefOffset:self.clef] - offsetFromBottomOfScreen) * KSpacing);
   
@@ -46,15 +46,10 @@ const NSUInteger KSpacing = 25;
   noteFrame.origin.y =  noteBottom;
   _noteView.frame = noteFrame;
     
-    BOOL down = _note.index < 37;
-    
+    BOOL down = _note.index < (35 - [_note clefOffset:self.clef]);
+
     _quarterUp.hidden = !down;
     _quarterDown.hidden = down;
-    
-  
-  CGRect accidentalFrame = _accidentalView.frame;
-  accidentalFrame.origin.y =  noteBottom;
-  _accidentalView.frame = accidentalFrame;
   
   _accidentalView.hidden = _note.accidental == AccidentalNone ? YES : NO;
 }

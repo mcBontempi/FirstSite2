@@ -39,11 +39,20 @@
                     <rect key="frame" x="20" y="133" width="113" height="339"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lbassclef.png" translatesAutoresizingMaskIntoConstraints="NO" id="NjS-wA-fsq">
+                    <rect key="frame" x="4" y="197" width="158" height="197"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="_trebleCleffImageView" destination="e7V-pL-eNj" id="JR3-OU-kCA"/>
+                <outlet property="bassCleffImageView" destination="NjS-wA-fsq" id="Vjz-dP-XpP"/>
+            </connections>
         </view>
     </objects>
     <resources>
+        <image name="lbassclef.png" width="448" height="518"/>
         <image name="trebleclef.png" width="199" height="591"/>
     </resources>
 </document>

@@ -95,6 +95,8 @@
 {
     ClefBlock *clefBlock = [[[NSBundle mainBundle] loadNibNamed:@"ClefBlock" owner:self options:nil] lastObject];
     
+    clefBlock.clef = _excercise.clef;
+    
     return [self addBlock:clefBlock];
 }
 
@@ -122,16 +124,17 @@
         NSUInteger detectedOctave = (57 + noteIndex) / 12;
         NSUInteger detectedNote = (57 + noteIndex) % 12;
         
-        NSLog(@"--------------");
-        NSLog(@"detected frequency:%f", freq);
-        NSLog(@"note index:%d", noteIndex);
-        NSLog(@"detected octave:%d", detectedOctave);
-        NSLog(@"detected note:%d", detectedNote);
+    //    NSLog(@"--------------");
+    //    NSLog(@"detected frequency:%f", freq);
+    //    NSLog(@"note index:%d", noteIndex);
+    //    NSLog(@"detected octave:%d", detectedOctave);
+    //    NSLog(@"detected note:%d", detectedNote);
         
         Note *note = [[Note alloc] init];
         
         note.octave = detectedOctave;
         note.note = @[@"C", @"C", @"D", @"D", @"E", @"F",@"F", @"G",@"G", @"A",@"A", @"B"][detectedNote];
+        
         
         switch (detectedNote)
         
@@ -145,10 +148,20 @@
                 break;
         }
         
+        
+        NSLog(@"detected note = %@ : reference note = %@", note, _excercise.noteSequence[_currentNoteIndex]);
+        
+        
         if ([note isEqual:_excercise.noteSequence[_currentNoteIndex]]) {
             
              dispatch_async(dispatch_get_main_queue(), ^{
-                 self.currentNoteIndex++;
+                 
+                 if(self.currentNoteIndex != _excercise.noteSequence.count-1) {
+                     self.currentNoteIndex++;
+                 }
+                 else {
+                     self.currentNoteIndex = 0;
+                 }
              });
         }
     }
