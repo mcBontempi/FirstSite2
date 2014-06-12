@@ -12,7 +12,7 @@
 #import "Note.h"
 #import "Excercise.h"
 #import "Recorder.h"
-#import "MarkerBlock.h"
+#import "IndicatorNoteBlock.h"
 
 @interface GameViewController () <RecorderDelegate>
 
@@ -20,15 +20,14 @@
 
 @end
 
+const CGFloat verticalOffset = 100;
+
 @implementation GameViewController {
     NSUInteger _runningX;
     
-
-    
     Recorder *_recorder;
     
-    MarkerBlock *_markerBlock;
-    
+    IndicatorNoteBlock *_markerBlock;
     
     CGFloat _clefWidth;
     CGFloat _noteWidth;
@@ -46,6 +45,7 @@
     
     CGRect rect = _markerBlock.frame;
     rect.origin.x = x;
+    rect.origin.y = verticalOffset;
     _markerBlock.frame = rect;
 }
 
@@ -58,7 +58,7 @@
 {
     [super viewDidAppear:animated];
     
-    _markerBlock = [[[NSBundle mainBundle] loadNibNamed:@"MarkerBlock" owner:self options:nil] lastObject];
+    _markerBlock = [[[NSBundle mainBundle] loadNibNamed:@"IndicatorNoteBlock" owner:self options:nil] lastObject];
     
     [self.view addSubview:_markerBlock];
     
@@ -82,6 +82,7 @@
 {
     CGRect rect = view.frame;
     rect.origin.x = _runningX;
+    rect.origin.y = verticalOffset;
     view.frame = rect;
     
     _runningX += rect.size.width;
@@ -115,8 +116,9 @@
 
 - (void)recordedFreq:(float)freq;
 {
-    if (freq > 100.0f)  // to avoid environmental noise
-    {
+    if(freq
+       > 100) {
+    
         double toneStep = pow(2.0, 1.0/12.0);
         double baseFreq = 440.0;
         
@@ -163,6 +165,12 @@
                      self.currentNoteIndex = 0;
                  }
              });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _markerBlock.note = note;
+                _markerBlock.clef = _excercise.clef;
+            });
         }
     }
 }

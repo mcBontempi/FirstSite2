@@ -34,12 +34,14 @@ using namespace std;
 
 - (void)setupAudio
 {
-    _ringBuffer = new RingBuffer(32768, 2);
+    _ringBuffer = new RingBuffer(100000, 2);
     _audioManager = [Novocaine audioManager];
     
     __weak Recorder *weakSelf = self;
     
     [_audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels) {
+        
+      //  NSLog(@"%d", numFrames);
         
         if(_xoffset < 10000) {
             
@@ -56,7 +58,7 @@ using namespace std;
             
             const double sr = 44100;        //  Sample rate.
             const double minF = 27.5;       //  Lowest pitch of interest (27.5 = A0, lowest note on piano.)
-            const double maxF = 4186.0;     //  Highest pitch of interest(4186 = C8, highest note on piano.)
+            const double maxF = 4186;     //  Highest pitch of interest(4186 = C8, highest note on piano.)
             
             const int minP = int(sr/maxF-1);    //  Minimum period
             const int maxP = int(sr/minF+1);    //  Maximum period
@@ -76,6 +78,8 @@ using namespace std;
             double ef = sr/pEst;
             
             double error = 100*12*log(fEst/f)/log(2);
+            
+            printf("ef %lf\n", ef);
             
         //    printf( "Actual freq:         %8.3lf\n", f );
         //    printf( "Estimated freq:      %8.3lf\n", sr/pEst );

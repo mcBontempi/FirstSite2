@@ -16,6 +16,9 @@
 		D6A159AF19411DF900054E67 /* quarterup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A159AB19411DF900054E67 /* quarterup@2x.png */; };
 		D6A159B019411DF900054E67 /* stave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A159AC19411DF900054E67 /* stave@2x.png */; };
 		D6A159B119411DF900054E67 /* trebleclef@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A159AD19411DF900054E67 /* trebleclef@2x.png */; };
+		D6B257B119475A3400854AEE /* IndicatorNoteBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B257AF19475A3400854AEE /* IndicatorNoteBlock.m */; };
+		D6B257B219475A3400854AEE /* IndicatorNoteBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B257B019475A3400854AEE /* IndicatorNoteBlock.xib */; };
+		D6B257B419475B2D00854AEE /* indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6B257B319475B2D00854AEE /* indicator@2x.png */; };
 		D6C39E8D1927F30C0005DC51 /* ClefBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C39E8C1927F30C0005DC51 /* ClefBlock.xib */; };
 		D6C39E95192804460005DC51 /* ClefBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C39E94192804460005DC51 /* ClefBlock.m */; };
 		D6C39E98192805020005DC51 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C39E97192805020005DC51 /* GameViewController.m */; };
@@ -68,6 +71,10 @@
 		D6A159AB19411DF900054E67 /* quarterup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "quarterup@2x.png"; path = "assets/quarterup@2x.png"; sourceTree = "<group>"; };
 		D6A159AC19411DF900054E67 /* stave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stave@2x.png"; path = "assets/stave@2x.png"; sourceTree = "<group>"; };
 		D6A159AD19411DF900054E67 /* trebleclef@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "trebleclef@2x.png"; path = "assets/trebleclef@2x.png"; sourceTree = "<group>"; };
+		D6B257AE19475A3400854AEE /* IndicatorNoteBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorNoteBlock.h; sourceTree = "<group>"; };
+		D6B257AF19475A3400854AEE /* IndicatorNoteBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorNoteBlock.m; sourceTree = "<group>"; };
+		D6B257B019475A3400854AEE /* IndicatorNoteBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndicatorNoteBlock.xib; sourceTree = "<group>"; };
+		D6B257B319475B2D00854AEE /* indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "indicator@2x.png"; path = "assets/indicator@2x.png"; sourceTree = "<group>"; };
 		D6C39E8C1927F30C0005DC51 /* ClefBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClefBlock.xib; sourceTree = "<group>"; };
 		D6C39E93192804460005DC51 /* ClefBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefBlock.h; sourceTree = "<group>"; };
 		D6C39E94192804460005DC51 /* ClefBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefBlock.m; sourceTree = "<group>"; };
@@ -158,6 +165,9 @@
 				D64C1E7919280B1000BCD7D5 /* NoteBlock.h */,
 				D64C1E7A19280B1000BCD7D5 /* NoteBlock.m */,
 				D64C1E7C19280B2800BCD7D5 /* NoteBlock.xib */,
+				D6B257AE19475A3400854AEE /* IndicatorNoteBlock.h */,
+				D6B257AF19475A3400854AEE /* IndicatorNoteBlock.m */,
+				D6B257B019475A3400854AEE /* IndicatorNoteBlock.xib */,
 				D6F18D91193EF3F1002AB36B /* MarkerBlock.h */,
 				D6F18D92193EF3F1002AB36B /* MarkerBlock.m */,
 				D6F18D93193EF3F1002AB36B /* MarkerBlock.xib */,
@@ -261,6 +271,7 @@
 		D6F18DA91940DC8E002AB36B /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				D6B257B319475B2D00854AEE /* indicator@2x.png */,
 				D6A159AA19411DF900054E67 /* quarterdown@2x.png */,
 				D6A159AB19411DF900054E67 /* quarterup@2x.png */,
 				D6A159AC19411DF900054E67 /* stave@2x.png */,
@@ -359,9 +370,11 @@
 				D6A159B119411DF900054E67 /* trebleclef@2x.png in Resources */,
 				D64C1E7D19280B2800BCD7D5 /* NoteBlock.xib in Resources */,
 				D6A159AE19411DF900054E67 /* quarterdown@2x.png in Resources */,
+				D6B257B219475A3400854AEE /* IndicatorNoteBlock.xib in Resources */,
 				D6EECBA01923BFD4007C8839 /* Main_iPhone.storyboard in Resources */,
 				D6EECB971923BFD4007C8839 /* InfoPlist.strings in Resources */,
 				D6A159A619411CCE00054E67 /* lbassclef.png in Resources */,
+				D6B257B419475B2D00854AEE /* indicator@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +433,7 @@
 				D639BEFD1930DE6300B3F361 /* Note.m in Sources */,
 				D6EECBCC1923CEF3007C8839 /* Excercise.m in Sources */,
 				D6C39E95192804460005DC51 /* ClefBlock.m in Sources */,
+				D6B257B119475A3400854AEE /* IndicatorNoteBlock.m in Sources */,
 				D6F18D94193EF3F1002AB36B /* MarkerBlock.m in Sources */,
 				D6EECB9D1923BFD4007C8839 /* AppDelegate.m in Sources */,
 				D6EECBD21923ED07007C8839 /* Recorder.mm in Sources */,
@@ -565,7 +579,7 @@
 				GCC_PREFIX_HEADER = "FirstSite/FirstSite-Prefix.pch";
 				INFOPLIST_FILE = "FirstSite/FirstSite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E0AB033C-0CF7-4C55-BD12-198FDED32E45";
+				PROVISIONING_PROFILE = "60823E78-0961-466E-8A92-4D090193FD34";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -581,7 +595,7 @@
 				GCC_PREFIX_HEADER = "FirstSite/FirstSite-Prefix.pch";
 				INFOPLIST_FILE = "FirstSite/FirstSite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E0AB033C-0CF7-4C55-BD12-198FDED32E45";
+				PROVISIONING_PROFILE = "60823E78-0961-466E-8A92-4D090193FD34";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
