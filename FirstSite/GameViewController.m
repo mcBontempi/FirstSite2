@@ -32,6 +32,7 @@ const CGFloat verticalOffset = 100;
     CGFloat _clefWidth;
     CGFloat _noteWidth;
     
+    __weak IBOutlet UILabel *_debugLabel;
 }
 
 - (void)setCurrentNoteIndex:(NSUInteger)currentNoteIndex
@@ -117,7 +118,7 @@ const CGFloat verticalOffset = 100;
 - (void)recordedFreq:(float)freq;
 {
     if(freq
-       > 100) {
+       > 0) {
     
         double toneStep = pow(2.0, 1.0/12.0);
         double baseFreq = 440.0;
@@ -151,7 +152,6 @@ const CGFloat verticalOffset = 100;
         }
         
         
-        NSLog(@"detected note = %@ : reference note = %@", note, _excercise.noteSequence[_currentNoteIndex]);
         
         
         if ([note isEqual:_excercise.noteSequence[_currentNoteIndex]]) {
@@ -170,6 +170,13 @@ const CGFloat verticalOffset = 100;
             dispatch_async(dispatch_get_main_queue(), ^{
                 _markerBlock.note = note;
                 _markerBlock.clef = _excercise.clef;
+                
+                _debugLabel.alpha = 1.0;
+                
+                _debugLabel.text = [NSString stringWithFormat:@"detected note = %@ : reference note = %@", note, _excercise.noteSequence[_currentNoteIndex]];
+                
+                [UIView animateWithDuration:1.0 animations:^{_debugLabel.alpha = 0.0;}];
+                
             });
         }
     }
