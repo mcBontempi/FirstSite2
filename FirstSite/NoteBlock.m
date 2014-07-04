@@ -9,8 +9,8 @@
 #import "NoteBlock.h"
 #import "Note.h"
 
-const NSUInteger KSpacing = 25;
-const NSUInteger offsetFromBottomOfScreen = 15;
+const NSInteger KSpacing = 25;
+const NSInteger offsetFromBottomOfScreen = 15;
 
 
 @implementation NoteBlock {
@@ -35,13 +35,14 @@ const NSUInteger offsetFromBottomOfScreen = 15;
 {
     _note = note;
     
+    NSInteger index = (_note.index + [_note clefOffset:self.clef] - offsetFromBottomOfScreen);
     
-    CGFloat topOfLedger = (self.frame.size.height - ((_note.index + [_note clefOffset:self.clef] - offsetFromBottomOfScreen) * KSpacing) ) + 175;
+    CGFloat topOfLedger = (self.frame.size.height - (index * KSpacing)) + 175;
     
     
     CGFloat topOfStave = (self.frame.size.height - ((38 - offsetFromBottomOfScreen) * KSpacing) ) + 175;
     CGFloat bottomOfStave = (self.frame.size.height - ((30 - offsetFromBottomOfScreen) * KSpacing) ) + 175;
-    
+   
     if(topOfLedger < topOfStave) {
         
         do {

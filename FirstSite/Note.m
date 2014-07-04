@@ -19,14 +19,14 @@
 
 - (NSUInteger)clefOffset:(enum Clef)clef;
 {
-  return clef == ClefBass ? 19 : 0;
+  return clef == ClefBass ? 12 : 7;
 }
 
 
 - (BOOL)isEqual:(Note *)testNote
 {
     //if(self.index == testNote.index && self.accidental == testNote.accidental) {
-    if ([self.note isEqual:testNote.note]) {
+    if ([self.note isEqual:testNote.note] && self.octave == testNote.octave) {
     return YES;
     }
  

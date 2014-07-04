@@ -44,16 +44,11 @@ using namespace std;
       //  NSLog(@"%d", numFrames);
         
         if(_xoffset < 10000) {
-            
-            
             for (int i = 0; i < numFrames; i++)
             {
                 _x[_xoffset++] = data[i];
-                
-                
             }
         }
-        
         else {
             
             const double sr = 44100;        //  Sample rate.
@@ -79,18 +74,14 @@ using namespace std;
             
             double error = 100*12*log(fEst/f)/log(2);
             
-            printf("ef %lf\n", ef);
+             NSString *debug2Text = [NSString stringWithFormat:@"Estimated freq:      %8.3lf\nError (cents):       %8.3lf\nPeriodicity quality: %8.3lf\n", sr/pEst,   error, q];
             
-        //    printf( "Actual freq:         %8.3lf\n", f );
-        //    printf( "Estimated freq:      %8.3lf\n", sr/pEst );
-        //    printf( "Error (cents):       %8.3lf\n", error);
-        //    printf( "Periodicity quality: %8.3lf\n", q );
             
            _xoffset = 0;
             
-          //  if(error < 3000) {
-                [weakSelf.delegate recordedFreq:ef];
-           // }
+           if(error < 3000 && ef > 50) {
+                [weakSelf.delegate recordedFreq:ef debug2Text:debug2Text];
+            }
             
         }
     }];
@@ -114,6 +105,11 @@ double EstimatePeriod(
                       const int       maxP,       //  Maximum period
                       double&         q )         //  Quality (1= perfectly periodic)
 {
+  
+    
+    NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
+    
+    
     assert( minP > 1 );
     assert( maxP > minP );
     assert( n >= 2*maxP );
@@ -129,6 +125,9 @@ double EstimatePeriod(
     
     vector<double> nac(maxP+1);
     
+    NSUInteger b = 0;
+    NSUInteger c = 0;
+    
     for ( int p =  minP-1; p <= maxP+1; p++ )
     {
         double ac = 0.0;        // Standard auto-correlation
@@ -140,9 +139,25 @@ double EstimatePeriod(
             ac += x[i]*x[i+p];
             sumSqBeg += x[i]*x[i];
             sumSqEnd += x[i+p]*x[i+p];
+            
+            c++;
         }
+        
+        b++;
+        
+    //    NSLog(@"%d %d", b, c);
+        
+        c=0;
         nac[p] = ac / sqrt( sumSqBeg * sumSqEnd );
     }
+    
+   // NSLog(@"%d", c);
+    
+    
+    NSTimeInterval tie = [[NSDate date] timeIntervalSince1970];
+  //  NSLog(@"total time = %f", tie - ti);
+    
+    
     
     //  ---------------------------------------
     //  Find the highest peak in the range of interest.
@@ -184,6 +199,7 @@ double EstimatePeriod(
     double shift = 0.5*(right-left) / ( 2*mid - left - right );
     
     double pEst = bestP + shift;
+    
     
     //  -----------------------------------------------
     //  If the range of pitches being searched is greater
@@ -235,6 +251,7 @@ double EstimatePeriod(
             pEst = pEst / mul;
         }
     }
+    
     
     return pEst;
 }
