@@ -1,55 +1,91 @@
 
 #import "Recorder.h"
 #import <Novocaine.h>
-#import <RingBuffer.h>
-
-
 #include <vector>
 using namespace std;
 
-@implementation Recorder {
-    RingBuffer *_ringBuffer;
+@interface Recorder ()
+@property (nonatomic, assign) BOOL isProcessing;
+@end
+
+const NSInteger ringBufferLength = 20000;
+
+const NSInteger processingBufferLength = 10000;
+
+@implementation Recorder
+{
     Novocaine *_audioManager;
-
-    // shabby, its just whats fastest though
-    double _x[100000];
-    int _xoffset;
-    double _lastEF;
-
-
+    
+    double _rb[ringBufferLength];
+    
+    NSUInteger _lastWittenIndex;
+    
+    double _value;
+    
 }
 
 @synthesize delegate;
 
 - (id)init
 {
-	if ((self = [super init]))
-	{
+    if ((self = [super init]))
+    {
         [self setupAudio];
-	}
-	return self;
+    }
+    return self;
 }
-
-
 
 - (void)setupAudio
 {
-    _ringBuffer = new RingBuffer(100000, 2);
     _audioManager = [Novocaine audioManager];
     
     __weak Recorder *weakSelf = self;
     
+    __block NSUInteger totalNumberOfSamplesTaken = 0;
+    
     [_audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels) {
         
-      //  NSLog(@"%d", numFrames);
+        Recorder *strongSelf = weakSelf;
         
-        if(_xoffset < 10000) {
-            for (int i = 0; i < numFrames; i++)
-            {
-                _x[_xoffset++] = data[i];
+        // write data to the ring buffer
+        
+        for (int readIndex = numFrames ; readIndex ; readIndex--) {
+            
+            strongSelf->_rb[strongSelf->_lastWittenIndex] = data[readIndex];
+            
+            strongSelf->_value+=1;
+            
+            strongSelf->_lastWittenIndex++;
+            
+            totalNumberOfSamplesTaken++;
+            
+            if(strongSelf->_lastWittenIndex > ringBufferLength) {
+                strongSelf->_lastWittenIndex = 0;
             }
         }
-        else {
+        
+        
+        NSLog(@"last written index = %lu", (unsigned long)strongSelf->_lastWittenIndex);
+        
+        
+        if (!weakSelf.isProcessing && totalNumberOfSamplesTaken > processingBufferLength) {
+            
+            weakSelf.isProcessing = YES;
+            
+            double *xdouble = (double *)calloc(processingBufferLength, sizeof(double));
+            
+            NSInteger readPos = strongSelf->_lastWittenIndex;
+            
+            
+            // read from the ring buffer
+            for (int i = 0 ; i < processingBufferLength ; i++) {
+                xdouble[i] = strongSelf->_rb[readPos];
+                
+          //      NSLog(@"%d %f",i, xdouble[i]);
+                
+                readPos--;
+                if (readPos < 0) readPos = ringBufferLength;
+            }
             
             const double sr = 44100;        //  Sample rate.
             const double minF = 27.5;       //  Lowest pitch of interest (27.5 = A0, lowest note on piano.)
@@ -58,14 +94,13 @@ using namespace std;
             const int minP = int(sr/maxF-1);    //  Minimum period
             const int maxP = int(sr/minF+1);    //  Maximum period
             
-            //  Generate a test signal
             
             const double A440 = 440.0;              //  A440
             double f = A440 * pow(2.0,-9.0/12.0);   //  Middle C (9 semitones below A440)
             
             double q;
             
-            double pEst = EstimatePeriod( _x, _xoffset, minP, maxP, q );
+            double pEst = EstimatePeriod( xdouble, processingBufferLength, minP, maxP, q );
             double fEst = 0;
             if ( pEst > 0 )
                 fEst = sr/pEst;
@@ -74,38 +109,107 @@ using namespace std;
             
             double error = 100*12*log(fEst/f)/log(2);
             
-             NSString *debug2Text = [NSString stringWithFormat:@"Estimated freq:      %8.3lf\nError (cents):       %8.3lf\nPeriodicity quality: %8.3lf\n", sr/pEst,   error, q];
+            NSString *debug2Text = [NSString stringWithFormat:@"Estimated freq:      %8.3lf\nError (cents):       %8.3lf\nPeriodicity quality: %8.3lf\n", sr/pEst,   error, q];
             
-            
-           _xoffset = 0;
-            
-           if(error < 3000 && ef > 50) {
+            if(error < 3000 && ef > 50) {
                 [weakSelf.delegate recordedFreq:ef debug2Text:debug2Text];
             }
             
+            free(xdouble);
+            
+            
+            weakSelf.isProcessing = NO;
         }
     }];
     
     [_audioManager play];
-
+    
     
     
 }
 
 
-
+/*
+ 
+ 
+ - (void)setupAudio
+ {
+ _ringBuffer = new RingBuffer(100000, 2);
+ _audioManager = [Novocaine audioManager];
+ 
+ __weak Recorder *weakSelf = self;
+ 
+ [_audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels) {
+ 
+ //  NSLog(@"%d", numFrames);
+ 
+ if(_xoffset < 10000) {
+ for (int i = 0; i < numFrames; i++)
+ {
+ _x[_xoffset++] = data[i];
+ }
+ }
+ else {
+ 
+ const double sr = 44100;        //  Sample rate.
+ const double minF = 27.5;       //  Lowest pitch of interest (27.5 = A0, lowest note on piano.)
+ const double maxF = 4186;     //  Highest pitch of interest(4186 = C8, highest note on piano.)
+ 
+ const int minP = int(sr/maxF-1);    //  Minimum period
+ const int maxP = int(sr/minF+1);    //  Maximum period
+ 
+ //  Generate a test signal
+ 
+ const double A440 = 440.0;              //  A440
+ double f = A440 * pow(2.0,-9.0/12.0);   //  Middle C (9 semitones below A440)
+ 
+ double q;
+ 
+ double pEst = EstimatePeriod( _x, _xoffset, minP, maxP, q );
+ double fEst = 0;
+ if ( pEst > 0 )
+ fEst = sr/pEst;
+ 
+ double ef = sr/pEst;
+ 
+ double error = 100*12*log(fEst/f)/log(2);
+ 
+ NSString *debug2Text = [NSString stringWithFormat:@"Estimated freq:      %8.3lf\nError (cents):       %8.3lf\nPeriodicity quality: %8.3lf\n", sr/pEst,   error, q];
+ 
+ 
+ _xoffset = 0;
+ 
+ if(error < 3000 && ef > 50) {
+ [weakSelf.delegate recordedFreq:ef debug2Text:debug2Text];
+ }
+ 
+ }
+ }];
+ 
+ [_audioManager play];
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ */
 
 
 
 
 double EstimatePeriod(
-                      const double    *x,         //  Sample data.
+                      const double      *x,         //  Sample data.
                       const int       n,          //  Number of samples.  Should be at least 2 x maxP
                       const int       minP,       //  Minimum period of interest
                       const int       maxP,       //  Maximum period
                       double&         q )         //  Quality (1= perfectly periodic)
 {
-  
+    
     
     NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
     
@@ -145,17 +249,17 @@ double EstimatePeriod(
         
         b++;
         
-    //    NSLog(@"%d %d", b, c);
+        //    NSLog(@"%d %d", b, c);
         
         c=0;
         nac[p] = ac / sqrt( sumSqBeg * sumSqEnd );
     }
     
-   // NSLog(@"%d", c);
+    // NSLog(@"%d", c);
     
     
     NSTimeInterval tie = [[NSDate date] timeIntervalSince1970];
-  //  NSLog(@"total time = %f", tie - ti);
+    //  NSLog(@"total time = %f", tie - ti);
     
     
     
@@ -194,7 +298,7 @@ double EstimatePeriod(
     double left  = nac[bestP-1];
     double right = nac[bestP+1];
     
-  //  assert( 2*mid - left - right > 0.0 );
+    //  assert( 2*mid - left - right > 0.0 );
     
     double shift = 0.5*(right-left) / ( 2*mid - left - right );
     

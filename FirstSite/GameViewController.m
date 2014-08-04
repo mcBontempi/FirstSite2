@@ -182,7 +182,7 @@ const CGFloat verticalOffset = 100;
                 
                 _debugLabel2.text = debug2Text;
                 
-                [UIView animateWithDuration:5.0 animations:^{_debugLabel.alpha = 0.0; _debugLabel2.alpha=0.0;}];
+                [UIView animateWithDuration:1.0 animations:^{_debugLabel.alpha = 0.0; _debugLabel2.alpha=0.0;}];
                 
             });
         }
