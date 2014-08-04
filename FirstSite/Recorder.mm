@@ -10,7 +10,7 @@ using namespace std;
 
 const NSInteger ringBufferLength = 20000;
 
-const NSInteger processingBufferLength = 10000;
+const NSInteger processingBufferLength = 4000;
 
 @implementation Recorder
 {

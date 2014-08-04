@@ -326,9 +326,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Sparx;
 				TargetAttributes = {
-					D6EECB881923BFD4007C8839 = {
-						DevelopmentTeam = 3U786KR73N;
-					};
 					D6EECBAC1923BFD4007C8839 = {
 						TestTargetID = D6EECB881923BFD4007C8839;
 					};
@@ -570,13 +567,13 @@
 			baseConfigurationReference = D068B95135B647F8ABF1A59B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: daren taylor (7RBFWSSDU9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FirstSite/FirstSite-Prefix.pch";
 				INFOPLIST_FILE = "FirstSite/FirstSite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A41C2905-2DE9-40D2-8FA7-814F0A41B4DA";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -587,13 +584,13 @@
 			baseConfigurationReference = D068B95135B647F8ABF1A59B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: daren taylor (7RBFWSSDU9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FirstSite/FirstSite-Prefix.pch";
 				INFOPLIST_FILE = "FirstSite/FirstSite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A41C2905-2DE9-40D2-8FA7-814F0A41B4DA";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
