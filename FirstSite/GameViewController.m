@@ -32,6 +32,8 @@ const CGFloat verticalOffset = 100;
     CGFloat _clefWidth;
     CGFloat _noteWidth;
     
+    NSUInteger _lastDetectedNote;
+    
     __weak IBOutlet UILabel *_debugLabel2;
     __weak IBOutlet UILabel *_debugLabel;
 }
@@ -116,11 +118,18 @@ const CGFloat verticalOffset = 100;
     return width;
 }
 
-- (void)recordedFreq:(float)freq debug2Text:(NSString *)debug2Text
+- (void)error
+{
+    _lastDetectedNote = 0;
+    
+    _debugLabel.alpha = 0.0;
+}
+
+- (void)recordedFreq:(float)freq debugText:(NSString *)debug2Text
 {
     if(freq
        > 0) {
-    
+        
         double toneStep = pow(2.0, 1.0/12.0);
         double baseFreq = 440.0;
         
@@ -128,11 +137,11 @@ const CGFloat verticalOffset = 100;
         NSUInteger detectedOctave = (57 + noteIndex) / 12;
         NSUInteger detectedNote = (57 + noteIndex) % 12;
         
-    //    NSLog(@"--------------");
-    //    NSLog(@"detected frequency:%f", freq);
-    //    NSLog(@"note index:%d", noteIndex);
-    //    NSLog(@"detected octave:%d", detectedOctave);
-    //    NSLog(@"detected note:%d", detectedNote);
+        //    NSLog(@"--------------");
+        //    NSLog(@"detected frequency:%f", freq);
+        //    NSLog(@"note index:%d", noteIndex);
+        //    NSLog(@"detected octave:%d", detectedOctave);
+        //    NSLog(@"detected note:%d", detectedNote);
         
         Note *note = [[Note alloc] init];
         
@@ -153,40 +162,45 @@ const CGFloat verticalOffset = 100;
         }
         
         
-        
-        
-        if ([note isEqual:_excercise.noteSequence[_currentNoteIndex]]) {
-            
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 
-                 if(self.currentNoteIndex != _excercise.noteSequence.count-1) {
-                     self.currentNoteIndex++;
-                 }
-                 else {
-                     self.currentNoteIndex = 0;
-                 }
-             });
+        if (_lastDetectedNote != detectedNote) {
+            _lastDetectedNote = detectedNote;
         }
         else {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([note isEqual:_excercise.noteSequence[_currentNoteIndex]]) {
                 
-                NSLog(@"note = %@", note);
-                
-                _markerBlock.note = note;
-                _markerBlock.clef = _excercise.clef;
-                
-                _debugLabel.alpha = 1.0;
-                _debugLabel2.alpha = 1.0;
-                
-                _debugLabel.text = [NSString stringWithFormat:@"detected note = %@ : reference note = %@", note, _excercise.noteSequence[_currentNoteIndex]];
-                
-                _debugLabel2.text = debug2Text;
-                
-                [UIView animateWithDuration:1.0 animations:^{_debugLabel.alpha = 0.0; _debugLabel2.alpha=0.0;}];
-                
-            });
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if(self.currentNoteIndex != _excercise.noteSequence.count-1) {
+                        self.currentNoteIndex++;
+                    }
+                    else {
+                        self.currentNoteIndex = 0;
+                    }
+                });
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    NSLog(@"note = %@", note);
+                    
+                    _markerBlock.note = note;
+                    _markerBlock.clef = _excercise.clef;
+                    
+                    _debugLabel.alpha = 1.0;
+                    _debugLabel2.alpha = 1.0;
+                    
+                    _debugLabel.text = [NSString stringWithFormat:@"detected note = %@ : reference note = %@", note, _excercise.noteSequence[_currentNoteIndex]];
+                    
+                    _debugLabel2.text = debug2Text;
+                    
+                    [UIView animateWithDuration:20.0 animations:^{_debugLabel.alpha = 0.0; _debugLabel2.alpha=0.0;}];
+                    
+                });
+            }
         }
     }
+    
 }
 
 @end

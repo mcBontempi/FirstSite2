@@ -44,7 +44,7 @@ const NSUInteger KIndicatorSpacing = 25;
 
     _accidentalView.hidden = _note.accidental == AccidentalNone ? YES : NO;
     
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:2.5
                      animations:^{_noteView.alpha = 0.0;}];
     
 }

@@ -1,5 +1,6 @@
 @protocol RecorderDelegate <NSObject>
-- (void)recordedFreq:(float)freq  debug2Text:(NSString *)debug2Text;
+- (void)recordedFreq:(float)freq  debugText:(NSString *)debug2Text;
+- (void)error;
 @end
 @interface Recorder : NSObject
 {

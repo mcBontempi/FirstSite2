@@ -10,7 +10,7 @@ using namespace std;
 
 const NSInteger ringBufferLength = 20000;
 
-const NSInteger processingBufferLength = 4000;
+const NSInteger processingBufferLength = 1000;
 
 @implementation Recorder
 {
@@ -65,7 +65,7 @@ const NSInteger processingBufferLength = 4000;
         }
         
         
-        NSLog(@"last written index = %lu", (unsigned long)strongSelf->_lastWittenIndex);
+       // NSLog(@"last written index = %lu", (unsigned long)strongSelf->_lastWittenIndex);
         
         
         if (!weakSelf.isProcessing && totalNumberOfSamplesTaken > processingBufferLength) {
@@ -111,12 +111,14 @@ const NSInteger processingBufferLength = 4000;
             
             NSString *debug2Text = [NSString stringWithFormat:@"Estimated freq:      %8.3lf\nError (cents):       %8.3lf\nPeriodicity quality: %8.3lf\n", sr/pEst,   error, q];
             
-            if(error < 3000 && ef > 50) {
-                [weakSelf.delegate recordedFreq:ef debug2Text:debug2Text];
+            if(error < 3000 && ef > 52) {
+                [weakSelf.delegate recordedFreq:ef debugText:debug2Text];
+            }
+            else {
+                [weakSelf.delegate error];
             }
             
             free(xdouble);
-            
             
             weakSelf.isProcessing = NO;
         }
@@ -128,80 +130,6 @@ const NSInteger processingBufferLength = 4000;
     
 }
 
-
-/*
- 
- 
- - (void)setupAudio
- {
- _ringBuffer = new RingBuffer(100000, 2);
- _audioManager = [Novocaine audioManager];
- 
- __weak Recorder *weakSelf = self;
- 
- [_audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels) {
- 
- //  NSLog(@"%d", numFrames);
- 
- if(_xoffset < 10000) {
- for (int i = 0; i < numFrames; i++)
- {
- _x[_xoffset++] = data[i];
- }
- }
- else {
- 
- const double sr = 44100;        //  Sample rate.
- const double minF = 27.5;       //  Lowest pitch of interest (27.5 = A0, lowest note on piano.)
- const double maxF = 4186;     //  Highest pitch of interest(4186 = C8, highest note on piano.)
- 
- const int minP = int(sr/maxF-1);    //  Minimum period
- const int maxP = int(sr/minF+1);    //  Maximum period
- 
- //  Generate a test signal
- 
- const double A440 = 440.0;              //  A440
- double f = A440 * pow(2.0,-9.0/12.0);   //  Middle C (9 semitones below A440)
- 
- double q;
- 
- double pEst = EstimatePeriod( _x, _xoffset, minP, maxP, q );
- double fEst = 0;
- if ( pEst > 0 )
- fEst = sr/pEst;
- 
- double ef = sr/pEst;
- 
- double error = 100*12*log(fEst/f)/log(2);
- 
- NSString *debug2Text = [NSString stringWithFormat:@"Estimated freq:      %8.3lf\nError (cents):       %8.3lf\nPeriodicity quality: %8.3lf\n", sr/pEst,   error, q];
- 
- 
- _xoffset = 0;
- 
- if(error < 3000 && ef > 50) {
- [weakSelf.delegate recordedFreq:ef debug2Text:debug2Text];
- }
- 
- }
- }];
- 
- [_audioManager play];
- 
- 
- 
- }
- 
- 
- 
- 
- 
- 
- */
-
-
-
-
 double EstimatePeriod(
                       const double      *x,         //  Sample data.
                       const int       n,          //  Number of samples.  Should be at least 2 x maxP
@@ -209,14 +137,11 @@ double EstimatePeriod(
                       const int       maxP,       //  Maximum period
                       double&         q )         //  Quality (1= perfectly periodic)
 {
-    
-    
-    NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
-    
-    
     assert( minP > 1 );
     assert( maxP > minP );
-    assert( n >= 2*maxP );
+
+    // removing this allows us to have very small sample lengths
+    //  assert( n >= 2*maxP );
     assert( x != NULL );
     
     q = 0;
@@ -359,10 +284,5 @@ double EstimatePeriod(
     
     return pEst;
 }
-
-
-
-
-
 
 @end

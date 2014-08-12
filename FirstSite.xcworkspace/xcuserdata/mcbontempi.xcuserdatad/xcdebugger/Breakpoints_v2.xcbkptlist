@@ -54,7 +54,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/ViewController.m"
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-addBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-addBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "-addBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-addNoteBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,12 +442,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428852209.143542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-recordedFreq:debug2Text:"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-recordedFreq:debugText:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -458,12 +458,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428852209.143542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-recordedFreq:debug2Text:"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-recordedFreq:debugText:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -504,12 +504,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428852209.143542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "-recordedFreq:debug2Text:"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-recordedFreq:debugText:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -520,12 +520,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428852209.143542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-recordedFreq:debug2Text:"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "-recordedFreq:debugText:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -536,12 +536,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428852209.143542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-recordedFreq:debug2Text:"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-recordedFreq:debugText:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -568,12 +568,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428852209.143542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-recordedFreq:debug2Text:"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-recordedFreq:debugText:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -758,28 +758,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
+            timestampString = "428852209.143542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "-recordedFreq:debug2Text:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FirstSite/GameViewController.m"
-            timestampString = "426079815.553198"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "-recordedFreq:debug2Text:"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-recordedFreq:debugText:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -795,7 +779,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
             endingLineNumber = "40"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
+            landmarkName = "-applicationWillResignActive:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -838,11 +822,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426080245.647454"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-addNoteBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -854,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426080555.042358"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -870,11 +854,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426080580.546728"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -886,27 +870,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FirstSite/GameViewController.m"
-            timestampString = "426080585.581606"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FirstSite/GameViewController.m"
-            timestampString = "426080605.716086"
+            timestampString = "428851631.544389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
             endingLineNumber = "71"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FirstSite/GameViewController.m"
+            timestampString = "428851631.544389"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
             <Locations>
@@ -1002,6 +986,38 @@
             startingLineNumber = "40"
             endingLineNumber = "40"
             landmarkName = "-setNote:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FirstSite/GameViewController.m"
+            timestampString = "428852209.143542"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-recordedFreq:debugText:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FirstSite/GameViewController.m"
+            timestampString = "428852209.143542"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-error"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
