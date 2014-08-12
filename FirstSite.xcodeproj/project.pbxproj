@@ -22,6 +22,8 @@
 		D6C39E8D1927F30C0005DC51 /* ClefBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C39E8C1927F30C0005DC51 /* ClefBlock.xib */; };
 		D6C39E95192804460005DC51 /* ClefBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C39E94192804460005DC51 /* ClefBlock.m */; };
 		D6C39E98192805020005DC51 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C39E97192805020005DC51 /* GameViewController.m */; };
+		D6CD97F6199A1036001B17A1 /* flat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CD97F4199A1036001B17A1 /* flat@2x.png */; };
+		D6CD97F7199A1036001B17A1 /* sharp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CD97F5199A1036001B17A1 /* sharp@2x.png */; };
 		D6EECB8D1923BFD4007C8839 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EECB8C1923BFD4007C8839 /* Foundation.framework */; };
 		D6EECB8F1923BFD4007C8839 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EECB8E1923BFD4007C8839 /* CoreGraphics.framework */; };
 		D6EECB911923BFD4007C8839 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EECB901923BFD4007C8839 /* UIKit.framework */; };
@@ -77,6 +79,8 @@
 		D6C39E94192804460005DC51 /* ClefBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefBlock.m; sourceTree = "<group>"; };
 		D6C39E96192805020005DC51 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		D6C39E97192805020005DC51 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		D6CD97F4199A1036001B17A1 /* flat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flat@2x.png"; path = "assets/flat@2x.png"; sourceTree = "<group>"; };
+		D6CD97F5199A1036001B17A1 /* sharp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sharp@2x.png"; path = "assets/sharp@2x.png"; sourceTree = "<group>"; };
 		D6EECB891923BFD4007C8839 /* FirstSite mvp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FirstSite mvp2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6EECB8C1923BFD4007C8839 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D6EECB8E1923BFD4007C8839 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -258,6 +262,8 @@
 		D6F18DA91940DC8E002AB36B /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				D6CD97F4199A1036001B17A1 /* flat@2x.png */,
+				D6CD97F5199A1036001B17A1 /* sharp@2x.png */,
 				D6B257B319475B2D00854AEE /* indicator@2x.png */,
 				D6A159AA19411DF900054E67 /* quarterdown@2x.png */,
 				D6A159AB19411DF900054E67 /* quarterup@2x.png */,
@@ -345,12 +351,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6CD97F6199A1036001B17A1 /* flat@2x.png in Resources */,
 				D6C39E8D1927F30C0005DC51 /* ClefBlock.xib in Resources */,
 				D6EECBA31923BFD4007C8839 /* Main_iPad.storyboard in Resources */,
 				D6A159AF19411DF900054E67 /* quarterup@2x.png in Resources */,
 				D6EECBA81923BFD4007C8839 /* Images.xcassets in Resources */,
 				D6A159B019411DF900054E67 /* stave@2x.png in Resources */,
 				D6F18D95193EF3F1002AB36B /* MarkerBlock.xib in Resources */,
+				D6CD97F7199A1036001B17A1 /* sharp@2x.png in Resources */,
 				D6A159B119411DF900054E67 /* trebleclef@2x.png in Resources */,
 				D64C1E7D19280B2800BCD7D5 /* NoteBlock.xib in Resources */,
 				D6A159AE19411DF900054E67 /* quarterdown@2x.png in Resources */,
