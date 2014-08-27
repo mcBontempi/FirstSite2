@@ -17,4 +17,8 @@
 @property (nonatomic, strong) Note *note;
 @property (nonatomic, assign) enum Clef clef;
 
+// used while animating
+- (void)hideNote;
+- (void)showNote;
+
 @end

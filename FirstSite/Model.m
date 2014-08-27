@@ -65,7 +65,7 @@
                     if ([rawAccidental isEqual:@"S"]) {
                         newNote.accidental = AccidentalSharp;
                     }
-                    else if ([rawAccidental isEqual:@"S"]) {
+                    else if ([rawAccidental isEqual:@"F"]) {
                         newNote.accidental = AccidentalFlat;
                     }
                     else {

@@ -14,20 +14,35 @@ const NSUInteger KIndicatorSpacing = 25;
 @implementation IndicatorNoteBlock {
   
   __weak IBOutlet UIView *_noteView;
-  __weak IBOutlet UIView *_accidentalView;
+  __weak IBOutlet UIImageView *_accidentalImageView;
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
   self = [super initWithFrame:frame];
   if (self) {
-    // Initialization code
-      
       _noteView.alpha = 0.0;
   }
   return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    _noteView.alpha = 0.0;
+}
+
+- (void)hideNote
+{
+    _noteView.hidden = YES;
+    _accidentalImageView.hidden = YES;
+}
+- (void)showNote
+{
+    _noteView.hidden = NO;
+    _accidentalImageView.hidden = NO;
+}
  -(void)setNote:(Note *)note
 {
     _note = note;
@@ -42,7 +57,10 @@ const NSUInteger KIndicatorSpacing = 25;
     
     _noteView.alpha = 1.0;
 
-    _accidentalView.hidden = _note.accidental == AccidentalNone ? YES : NO;
+    _accidentalImageView.hidden = _note.accidental == AccidentalNone ? YES : NO;
+    
+    _accidentalImageView.image = [UIImage imageNamed: _note.accidental == AccidentalFlat ? @"flat" : @"sharp"];
+
     
     [UIView animateWithDuration:2.5
                      animations:^{_noteView.alpha = 0.0;}];

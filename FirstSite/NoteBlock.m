@@ -16,7 +16,7 @@ const NSInteger offsetFromBottomOfScreen = 15;
 @implementation NoteBlock {
     
     __weak IBOutlet UIView *_noteView;
-    __weak IBOutlet UIView *_accidentalView;
+    __weak IBOutlet UIImageView *_accidentalImageView;
     __weak IBOutlet UIImageView *_quarterUp;
     __weak IBOutlet UIImageView *_quarterDown;
 }
@@ -77,9 +77,6 @@ const NSInteger offsetFromBottomOfScreen = 15;
             
         } while (bottomOfStave <= topOfLedger);
     }
-    
-    
-    
 }
 
 - (void)layoutSubviews
@@ -98,8 +95,31 @@ const NSInteger offsetFromBottomOfScreen = 15;
     _quarterUp.hidden = !down;
     _quarterDown.hidden = down;
     
-    _accidentalView.hidden = _note.accidental == AccidentalNone ? YES : NO;
+    _accidentalImageView.hidden = _note.accidental == AccidentalNone ? YES : NO;
+    
+    _accidentalImageView.image = [UIImage imageNamed: _note.accidental == AccidentalFlat ? @"flat" : @"sharp"];
 }
+
+- (void)bounce
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        [self view:_noteView offsetY:-30];
+     [self view:_accidentalImageView offsetY:-30];
+    }    completion:^(BOOL finished){
+        [UIView animateWithDuration:0.2 animations:^{
+            [self view:_noteView offsetY:+30];
+            [self view:_accidentalImageView offsetY:+30];
+        }];
+   }];
+}
+
+- (void)view:(UIView *)view offsetY:(CGFloat)yOffset
+{
+    CGRect frame = view.frame;
+    frame.origin.y += yOffset;
+    view.frame = frame;
+}
+
 
 
 @end

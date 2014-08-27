@@ -36,7 +36,53 @@ const CGFloat verticalOffset = 100;
     
     __weak IBOutlet UILabel *_debugLabel2;
     __weak IBOutlet UILabel *_debugLabel;
+    
+    __weak IBOutlet UISwitch *_audioSwitch;
+    
+    NSMutableArray *_noteViews;
+    
+    SystemSoundID _advanceSoundID;
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    _noteViews = [@[] mutableCopy];
+ //   NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"advance" ofType:@"wav"];
+ //   AudioServicesCreateSystemSoundID((__bridge CFURLRef) [NSURL fileURLWithPath:soundFile], &_advanceSoundID);
+    
+}
+
+- (void)advanceCurrentNoteIndexAnimated
+{
+    NoteBlock *noteBlock = _noteViews[_currentNoteIndex];
+    
+    [noteBlock bounce];
+    
+    _currentNoteIndex = _currentNoteIndex+1;
+    
+    CGFloat x = _clefWidth;
+    
+    x+=(_currentNoteIndex*_noteWidth);
+    
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        CGRect rect = _markerBlock.frame;
+        rect.origin.x = x;
+        rect.origin.y = verticalOffset;
+        _markerBlock.frame = rect;
+        [_markerBlock hideNote];
+        
+        
+    } completion:^(BOOL finished){
+        [_markerBlock showNote];
+    }];
+    
+
+    
+}
+
 
 - (void)setCurrentNoteIndex:(NSUInteger)currentNoteIndex
 {
@@ -46,16 +92,11 @@ const CGFloat verticalOffset = 100;
     
     x+=(_currentNoteIndex*_noteWidth);
     
-    
     CGRect rect = _markerBlock.frame;
     rect.origin.x = x;
     rect.origin.y = verticalOffset;
     _markerBlock.frame = rect;
-}
-
-- (IBAction)moveMarkerBlock:(id)sender
-{
-    self.currentNoteIndex++;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,6 +106,7 @@ const CGFloat verticalOffset = 100;
     _markerBlock = [[[NSBundle mainBundle] loadNibNamed:@"IndicatorNoteBlock" owner:self options:nil] lastObject];
     
     [self.view addSubview:_markerBlock];
+  
     
     _runningX = 0;
     
@@ -115,6 +157,9 @@ const CGFloat verticalOffset = 100;
     
     noteBlock.note = note;
     
+    
+    [_noteViews addObject:noteBlock];
+    
     return width;
 }
 
@@ -144,7 +189,6 @@ const CGFloat verticalOffset = 100;
         //    NSLog(@"detected note:%d", detectedNote);
         
         Note *note = [[Note alloc] init];
-        
         note.octave = detectedOctave;
         note.note = @[@"C", @"C", @"D", @"D", @"E", @"F",@"F", @"G",@"G", @"A",@"A", @"B"][detectedNote];
         
@@ -172,7 +216,11 @@ const CGFloat verticalOffset = 100;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     if(self.currentNoteIndex != _excercise.noteSequence.count-1) {
-                        self.currentNoteIndex++;
+                        [self advanceCurrentNoteIndexAnimated];
+                        
+                        if (_audioSwitch.on) {
+                    //        AudioServicesPlaySystemSound (_advanceSoundID);
+                        }
                     }
                     else {
                         self.currentNoteIndex = 0;

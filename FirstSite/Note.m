@@ -22,12 +22,27 @@
   return clef == ClefBass ? 12 : 7;
 }
 
+- (NSString *)alternateNote
+{
+    return @{@"C":@"D", @"D":@"E", @"F":@"G", @"G":@"A", @"A":@"B"}[self.note];
+}
 
 - (BOOL)isEqual:(Note *)testNote
 {
-    //if(self.index == testNote.index && self.accidental == testNote.accidental) {
-    if ([self.note isEqual:testNote.note] && self.octave == testNote.octave) {
+    
+    if ([testNote.note isEqual:@"G"] && testNote.accidental == AccidentalFlat) {
+        
+        
+    }
+    
+    if (self.octave == testNote.octave) {
+    
+    if (([self.note isEqual:testNote.note] && self.accidental == testNote.accidental) ||
+        (self.accidental == AccidentalSharp && testNote.accidental == AccidentalFlat && [testNote.note isEqual:self.alternateNote])
+        
+        ) {
     return YES;
+    }
     }
  
     return NO;

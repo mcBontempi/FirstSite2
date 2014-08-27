@@ -17,4 +17,6 @@
 @property (nonatomic, strong) Note *note;
 @property (nonatomic, assign) enum Clef clef;
 
+- (void)bounce;
+
 @end
